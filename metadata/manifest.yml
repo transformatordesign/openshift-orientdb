@@ -1,21 +1,19 @@
-Name: orientdb
+Name: openshift-orientdb
+Source-Url: https://github.com/jjfraz11/openshift-orientdb.git
+Cartridge-Version: 0.0.1
+Cartridge-Vendor: jjfraz11
 Cartridge-Short-Name: ORIENTDB
-Display-Name: ORIENTDB
-Description: "OrientDB is an Open Source NoSQL DBMS with the features of both Document and Graph DBMSs."
+Display-Name: OrientDB
 Version: '1.7.4'
+Vendor: Orient Technologies
+Description: "OrientDB is an Open Source NoSQL DBMS with the features of both Document and Graph DBMSs."
 License: GNU GENERAL PUBLIC LICENSE
 License-Url: 
-Vendor: Orient Technologies 
-Cartridge-Version: 0.0.1
-Cartridge-Vendor: jelastic
-Source-Url: https://github.com/jelastic-public-cartridges/openshift-jelastic-orientdb.git
 Categories:
   - service
   - database
   - embedded
 Website: http://www.orientechnologies.com
-Help-Topics:
-  "Developer Center": http://jelastic.com
 Cart-Data:
   - Key: OPENSHIFT_TMP_DIR
     Type: environment
