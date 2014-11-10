@@ -1,8 +1,5 @@
-#!/bin/bash -e
+#!/bin/bash -ue
 
-set -u
+source $OPENSHIFT_CARTRIDGE_SDK_BASH
 
-for dir in logs tmp pid cache env; do
-	mkdir -p $dir
-done
-
+mkdir -p $OPENSHIFT_ORIENTDB_DIR/{logs,tmp,pid,cache,env}
