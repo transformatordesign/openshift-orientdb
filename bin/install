@@ -2,6 +2,11 @@
 
 source $OPENSHIFT_CARTRIDGE_SDK_BASH
 
+case "$1" in
+  -v| --version)
+    version="$2"
+esac
+
 echo "Installing orientdb"
 
 env_dir="${OPENSHIFT_ORIENTDB_DIR}/env"
@@ -10,7 +15,7 @@ env_dir="${OPENSHIFT_ORIENTDB_DIR}/env"
 echo 'Generating root password'
 root_password=$(generate_password)
 
-set_env_var 'OPENSHIFT_ORIENTDB_DB_USERNAME' root $env_dir
+set_env_var 'OPENSHIFT_ORIENTDB_DB_USERNAME' 'root' $env_dir
 set_env_var 'OPENSHIFT_ORIENTDB_DB_PASSWORD' $root_password $env_dir
 
 set_env_var 'OPENSHIFT_ORIENTDB_DB_URL' "remote://root:${root_password}@localhost"
