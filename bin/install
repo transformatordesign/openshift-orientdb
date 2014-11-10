@@ -9,13 +9,35 @@ esac
 
 echo "Installing orientdb"
 
+ln -s ${OPENSHIFT_ORIENTDB_DIR}/versions/${version} ${OPENSHIFT_ORIENTDB_DIR}/template
+
 env_dir="${OPENSHIFT_ORIENTDB_DIR}/env"
 
 # Generate root password - should add this to config file
-echo 'Generating root password'
-root_password=$(generate_password)
+echo 'Generating password for root user'
+username='root'
+password=$(generate_password)
 
-set_env_var 'OPENSHIFT_ORIENTDB_DB_USERNAME' 'root' $env_dir
-set_env_var 'OPENSHIFT_ORIENTDB_DB_PASSWORD' $root_password $env_dir
+set_env_var 'OPENSHIFT_ORIENTDB_DB_USERNAME' $username $env_dir
+set_env_var 'OPENSHIFT_ORIENTDB_DB_PASSWORD' $password $env_dir
 
-set_env_var 'OPENSHIFT_ORIENTDB_DB_URL' "remote://root:${root_password}@localhost" $env_dir
+set_env_var 'OPENSHIFT_ORIENTDB_VERSION' $version $env_dir
+
+set_env_var 'OPENSHIFT_ORIENTDB_DB_URL' "remote://${username}:${password}@${OPENSHIFT_ORIENTDB_DB_HOST}:${OPENSHIFT_ORIENTDB_DB_PORT}" $env_dir
+
+conn_url='remote://$OPENSHIFT_ORIENTDB_DB_HOST:$OPENSHIFT_ORIENTDB_DB_PORT'
+
+client_result ""
+client_result "OrientDB ${version} database added.  Please make note of these credentials:"
+client_result ""
+client_result "   Root User: ${username}"
+client_result "   Root Password: ${password}"
+client_result "   Database Name: ${OPENSHIFT_APP_NAME}"
+client_result ""
+client_result "Connection URL: ${conn_url}"
+client_result ""
+
+cart_props "connection_url=${conn_url}"
+cart_props "username=${username}"
+cart_props "password=${password}"
+cart_props "database_name=${OPENSHIFT_APP_NAME}"
