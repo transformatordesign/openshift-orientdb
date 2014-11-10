@@ -2,4 +2,4 @@
 
 source $OPENSHIFT_CARTRIDGE_SDK_BASH
 
-mkdir -p $OPENSHIFT_ORIENTDB_DIR/{template,logs,tmp,pid,cache,env}
+mkdir -p $OPENSHIFT_ORIENTDB_DIR/{logs,tmp,pid,cache,env}
