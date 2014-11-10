@@ -18,4 +18,4 @@ root_password=$(generate_password)
 set_env_var 'OPENSHIFT_ORIENTDB_DB_USERNAME' 'root' $env_dir
 set_env_var 'OPENSHIFT_ORIENTDB_DB_PASSWORD' $root_password $env_dir
 
-set_env_var 'OPENSHIFT_ORIENTDB_DB_URL' "remote://root:${root_password}@localhost"
+set_env_var 'OPENSHIFT_ORIENTDB_DB_URL' "remote://root:${root_password}@localhost" $env_dir
