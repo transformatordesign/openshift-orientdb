@@ -9,8 +9,6 @@ esac
 
 echo "Installing orientdb"
 
-ln -s ${OPENSHIFT_ORIENTDB_DIR}/versions/${version} ${OPENSHIFT_ORIENTDB_DIR}/template
-
 env_dir="${OPENSHIFT_ORIENTDB_DIR}/env"
 
 # Generate root password - should add this to config file
