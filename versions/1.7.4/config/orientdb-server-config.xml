@@ -74,9 +74,9 @@
                       implementation="com.orientechnologies.orient.server.network.protocol.http.ONetworkProtocolHttpDb"/>
         </protocols>
         <listeners>
-            <listener protocol="binary" ip-address="0.0.0.0" port-range="2424-2430" socket="default"/>
-            <!-- <listener protocol="binary" ip-address="0.0.0.0" port-range="2434-2440" socket="ssl"/> -->
-            <listener protocol="http" ip-address="0.0.0.0" port-range="8080-8090" socket="default">
+            <listener protocol="binary" ip-address="${OPENSHIFT_ORIENTDB_DB_HOST}" port-range="2424-2430" socket="default"/>
+            <!-- <listener protocol="binary" ip-address="${OPENSHIFT_ORIENTDB_DB_HOST}" port-range="2434-2440" socket="ssl"/> -->
+            <listener protocol="http" ip-address="${OPENSHIFT_ORIENTDB_DB_HOST_WEB}" port-range="2480-2490" socket="default">
                 <parameters>
                     <!-- Connection's custom parameters. If not specified the global configuration
                         will be taken -->
@@ -109,7 +109,7 @@
     <storages>
     </storages>
     <users>
-        <user name="root" password="827EE7DA7CDCA032470C76A92909B4646D5C59538165B9C3DAFCBE0F6D6FFFCCxxxxxx" resources="*"/>
+        <user name="${OPENSHIFT_ORIENTDB_DB_USERNAME}" password="${OPENSHIFT_ORIENTDB_DB_PASSWORD}" resources="*"/>
         <user name="guest" password="guest" resources="connect,server.listDatabases,server.dblist"/>
     </users>
     <properties>
