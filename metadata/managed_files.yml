@@ -7,3 +7,5 @@ locked_files:
 - metadata/
 - hooks/
 - hooks/*
+processed_templates:
+- config/orientdb-server-config.xml.erb
