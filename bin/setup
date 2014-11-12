@@ -7,17 +7,32 @@ case "$1" in
     version="$2"
 esac
 
-ORIENTDB_VERSION_DIR=${OPENSHIFT_ORIENTDB_DIR}/versions/${version}
+orientdb_version_dir=${OPENSHIFT_ORIENTDB_DIR}/versions/${version}
+orientdb_env_dir="${OPENSHIFT_ORIENTDB_DIR}/env"
 
 # Setup home directory
+echo 'Setting up home directory.'
 mkdir -p ${ORIENTDB_HOME}/{config,databases,plugins}
 
 pushd $ORIENTDB_HOME 1> /dev/null
-  ln -s ${ORIENTDB_VERSION_DIR}/benchmarks
-  ln -s ${ORIENTDB_VERSION_DIR}/bin
-  ln -s ${ORIENTDB_VERSION_DIR}/lib
-  ln -s ${ORIENTDB_VERSION_DIR}/www
-  cp -r ${ORIENTDB_VERSION_DIR}/config/* ./config
-  cp -r ${ORIENTDB_VERSION_DIR}/databases/* ./databases
-  cp -r ${ORIENTDB_VERSION_DIR}/plugins/* ./plugins
+  ln -s ${orientdb_version_dir}/benchmarks
+  ln -s ${orientdb_version_dir}/bin
+  ln -s ${orientdb_version_dir}/lib
+  ln -s ${orientdb_version_dir}/www
+  cp -r ${orientdb_version_dir}/config/* ./config
+  cp -r ${orientdb_version_dir}/databases/* ./databases
+  cp -r ${orientdb_version_dir}/plugins/* ./plugins
 popd 1> /dev/null
+
+# Generate root password - should add this to config file
+echo 'Generating password for root user'
+username='root'
+password=$(generate_password)
+conn_url="remote://${OPENSHIFT_ORIENTDB_DB_HOST}:${OPENSHIFT_ORIENTDB_DB_PORT}"
+
+echo 'Setting up environment variables.'
+
+set_env_var 'OPENSHIFT_ORIENTDB_DB_USERNAME' $username $env_dir
+set_env_var 'OPENSHIFT_ORIENTDB_DB_PASSWORD' $password $env_dir
+set_env_var 'OPENSHIFT_ORIENTDB_VERSION' $version $env_dir
+set_env_var 'OPENSHIFT_ORIENTDB_DB_URL' $conn_url $env_dir
