@@ -32,7 +32,7 @@ conn_url="remote://${OPENSHIFT_ORIENTDB_DB_HOST}:${OPENSHIFT_ORIENTDB_DB_PORT}"
 
 echo 'Setting up environment variables.'
 
-set_env_var 'OPENSHIFT_ORIENTDB_DB_USERNAME' $username $env_dir
-set_env_var 'OPENSHIFT_ORIENTDB_DB_PASSWORD' $password $env_dir
-set_env_var 'OPENSHIFT_ORIENTDB_VERSION' $version $env_dir
-set_env_var 'OPENSHIFT_ORIENTDB_DB_URL' $conn_url $env_dir
+set_env_var 'OPENSHIFT_ORIENTDB_DB_USERNAME' $username $orientdb_env_dir
+set_env_var 'OPENSHIFT_ORIENTDB_DB_PASSWORD' $password $orientdb_env_dir
+set_env_var 'OPENSHIFT_ORIENTDB_VERSION' $version $orientdb_env_dir
+set_env_var 'OPENSHIFT_ORIENTDB_DB_URL' $conn_url $orientdb_env_dir
