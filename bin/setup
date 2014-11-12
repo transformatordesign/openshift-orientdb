@@ -9,8 +9,8 @@ esac
 
 ORIENTDB_VERSION_DIR=${OPENSHIFT_ORIENTDB_DIR}/versions/${version}
 
-# Setup data directory
-mkdir -p ${OPENSHIFT_ORIENTDB_DATA_DIR}/{config,databases,plugins}
+# Setup home directory
+mkdir -p ${ORIENTDB_HOME}/{config,databases,plugins}
 
 pushd $OPENSHIFT_ORIENTDB_DATA_DIR 1> /dev/null
   ln -s ${ORIENTDB_VERSION_DIR}/benchmarks
