@@ -11,6 +11,7 @@ echo "Installing orientdb"
 
 # Use config generated from erb template.
 cp $OPENSHIFT_ORIENTDB_DIR/config/orientdb-server-config.xml $ORIENTDB_HOME/config/
+cp $OPENSHIFT_ORIENTDB_DIR/config/orientdb-server-log.properties $ORIENTDB_HOME/config/
 
 client_result ""
 client_result "OrientDB ${version} database added.  Please make note of these credentials:"

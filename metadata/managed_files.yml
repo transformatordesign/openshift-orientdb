@@ -9,3 +9,4 @@ locked_files:
 - hooks/*
 processed_templates:
 - config/orientdb-server-config.xml.erb
+- config/orientdb-server-log.properties.erb
