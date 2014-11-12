@@ -2,14 +2,8 @@
 
 # OrientDB init script
 
-# You have to SET the OrientDB installation directory here
-ORIENTDB_DIR=$ORIENTDB_HOME
-ORIENTDB_USER="jelastic"
-
-function usage {
-  echo "Usage: `basename $0`: <start|stop|status|restart>"
-  exit 1
-}
+orientdb_log_file=${OPENSHIFT_ORIENTDB_DB_LOG_DIR}/orientdb.log
+orientdb_err_file=${OPENSHIFT_ORIENTDB_DB_LOG_DIR}/orientdb.err
 
 function start {
   status
@@ -19,11 +13,7 @@ function start {
   fi
 
   echo "Starting OrientDB server daemon..."
-  pushd $ORIENTDB_DIR/bin 1> /dev/null
-    local log_file=${OPENSHIFT_ORIENTDB_DB_LOG_DIR}/orientdb.log
-    local err_file=${OPENSHIFT_ORIENTDB_DB_LOG_DIR}/orientdb.err
-    /usr/bin/nohup ./server.sh 1>$log_file 2>$err_file &
-  popd 1> /dev/null
+  /usr/bin/nohup ${ORIENTDB_HOME}/bin/server.sh 1>$orientdb_log_file 2>$orientdb_err_file &
 }
 
 function stop {
@@ -32,8 +22,9 @@ function stop {
     echo "OrientDB server daemon is already not running"
     return 0
   fi
+
   echo "Stopping OrientDB server daemon..."
-  cd $ORIENTDB_DIR/bin && /usr/bin/nohup ./shutdown.sh 1>>${OPENSHIFT_ORIENTDB_LOG_DIR}/orientdb.log 2>>${OPENSHIFT_ORIENTDB_LOG_DIR}/orientdb.err 
+  /usr/bin/nohup ${ORIENTDB_HOME}/bin/shutdown.sh 1>>$orientdb_log_file 2>>$orientdb_err_file  &
 }
 
 function status {
@@ -44,6 +35,11 @@ function status {
 
   # if PID is greater than 0 then OrientDB is running, else it is not
   return $PID
+}
+
+function usage {
+  echo "Usage: `basename $0`: <start|stop|status|restart>"
+  exit 1
 }
 
 case "$1" in
