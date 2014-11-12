@@ -3,7 +3,7 @@
 # OrientDB init script
 
 # You have to SET the OrientDB installation directory here
-ORIENTDB_DIR=$ORIENT_HOME
+ORIENTDB_DIR=$ORIENTDB_HOME
 ORIENTDB_USER="jelastic"
 
 function usage {
