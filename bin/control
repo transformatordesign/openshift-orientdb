@@ -72,6 +72,10 @@ case "$1" in
     exit 0
   ;;
 
+  post-snapshot)
+    exit 0
+  ;;
+
   *)
     usage
   ;;
