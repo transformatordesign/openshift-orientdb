@@ -76,6 +76,14 @@ case "$1" in
     exit 0
   ;;
 
+  pre-restore)
+    exit 0
+  ;;
+
+  post-restore)
+    exit 0
+  ;;
+
   *)
     usage
   ;;
